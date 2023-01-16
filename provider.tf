@@ -5,15 +5,15 @@ region = var.region
 }
 module "bastion" {
   source = "./modules/bastion"
-  ami =  "${var.ami}"
-  instance_type = ${var.instance_type}"
+  ami =  var.ami
+  instance_type = var.instance_type
   key = file("deployer.pub")
 }
 module "VPC" {
   source = "./modules/vpc"
-  vpc_cidr = "${var.vpc_cidr}"
-  publicsubnet_cidr = "${var.publicsubnet_cidr}"
-  privatesubnet_cidr = "${var.privatesubnet_cidr}"
+  vpc_cidr = var.vpc_cidr
+  publicsubnet_cidr = var.publicsubnet_cidr
+  privatesubnet_cidr = var.privatesubnet_cidr
 }
 module "EKS" {
   source = "./modules/eks"
