@@ -4,7 +4,7 @@ secret_key = var.secret_key
 region = var.region
 }
 module "bastion" {
-  source = "./modules/bastion"
+  source = "./modules/Bastion"
   ami =  var.ami
   instance_type = var.instance_type
   key = file("deployer.pub")

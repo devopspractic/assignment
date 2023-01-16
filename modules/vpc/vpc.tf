@@ -27,8 +27,8 @@ resource "aws_subnet" "public_1" {
 
   tags {
     Name = "public-us-east-1a"
-     "kubernetes.io/cluster/eks" = "shared" //it allows eks cluster to discover this particular subnet and use it.
-     " kubernetes.io/role/elb" = 1 //if we want to create a service of type load balancer then this tag is use to discover this subnet and associate LB with subnets.
+     kubernetes.io/cluster/eks = "shared"
+     kubernetes.io/role/elb = 1
   }
 }
 
@@ -40,8 +40,8 @@ resource "aws_subnet" "public_2" {
 
   tags {
     Name = "public-us-east-1b"
-     "kubernetes.io/cluster/eks" = "shared" //it allows eks cluster to discover this particular subnet and use it.
-     " kubernetes.io/role/elb" = 1 //if we want to create a service of type load balancer then this tag is use to discover this subnet and associate LB with subnets.
+     kubernetes.io/cluster/eks = "shared"
+     kubernetes.io/role/elb = 1
   }
 }
 
@@ -52,8 +52,8 @@ resource "aws_subnet" "private_1" {
 
   tags {
     Name = "private-us-east-1a"
-     "kubernetes.io/cluster/eks" = "shared" //it allows eks cluster to discover this particular subnet and use it.
-     " kubernetes.io/role/internal-elb" = 1 //for deployig private LBs
+     kubernetes.io/cluster/eks = "shared"
+     kubernetes.io/role/internal-elb = 1
   }
 }
 
@@ -64,10 +64,11 @@ resource "aws_subnet" "private_2" {
 
   tags {
     Name                                =  "private-us-east-1b"
-     "kubernetes.io/cluster/eks"        = "shared" //it allows eks cluster to discover this particular subnet and use it.
-     " kubernetes.io/role/internal-elb" = 1 //for deployig private LBs
+     kubernetes.io/cluster/eks          = "shared"
+     kubernetes.io/role/internal-elb    = 1
   }
 }
+
 
 #creating internet gateway to get internet connection
 
