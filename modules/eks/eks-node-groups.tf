@@ -19,8 +19,8 @@ resource "aws_iam_role" "nodes_role"{
  POLICY
 }
 #attaching iam policy to access EFS
-resource "aws_iam_policy" "example" {
-  name = "example"
+resource "aws_iam_policy" "efs" {
+  name = "efs"
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -54,11 +54,7 @@ resource "aws_iam_role_policy_attachment" "amazon_ec2_container_registry_read_on
  policy_arn = "arn:aws:iam::aws:policy//AmazonEC2ContainerRegistryReadOnly"
  role = aws_iam_role.nodes_role.name
 }
-resource "aws_iam_role_policy_attachment" "amazon_ec2_container_registry_read_only"{
 
- policy_arn = "arn:aws:iam::aws:policy//AmazonEC2ContainerRegistryReadOnly"
- role = aws_iam_role.nodes_role.name
-}
 
 #Resource aws_eks_node_group
 
