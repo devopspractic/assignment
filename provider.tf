@@ -19,6 +19,7 @@ module "EKS" {
   source = "./modules/eks"
 }
 module "rds" {
+  vpc_id = module.vpc.vpc_id
   source = "./modules/rds"
   allocated_storage = 20
   storage_type      = "gp2"
@@ -26,4 +27,8 @@ module "rds" {
   engine_version    = "5.7"
   instance_class    = "db.t3.micro"
   name              = "database-1"
+}
+module "efs" {
+  source = "./modules/efs"
+  public_subnet_id = module.vpc.public_subnet
 }

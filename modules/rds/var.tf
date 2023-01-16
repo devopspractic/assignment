@@ -24,3 +24,6 @@ variable "password" {
   type = string
   default = "shivam@123"
 }
+variable "rds_vpc_id" {
+   type = string
+}

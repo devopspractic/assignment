@@ -1,7 +1,7 @@
 resource "aws_security_group" "rds-sg" {
   name        = "rds-sg"
   description = "RDS security group"
-  vpc_id = modules.vpc.vpc_id
+  vpc_id = var.rds_vpc_id
   ingress {
     from_port   = 3306
     to_port     = 3306

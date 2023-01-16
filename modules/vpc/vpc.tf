@@ -7,7 +7,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
   assign_generated_ipv6_cidr_block = false
 
-  tags{
+  tags = {
    Name = "main"
   }
 }
@@ -20,10 +20,10 @@ resource "aws_subnet" "public_1" {
   availability_zone = "us-east-1a"
   map_public_ip_on_launch = true
 
-  tags {
+  tags = {
     Name = "public-us-east-1a"
      "kubernetes.io/cluster/eks" = "shared"
-     "kubernetes.io/role/elb" = "1"
+     "kubernetes.io/role/elb" = 1
   }
 }
 
@@ -33,7 +33,7 @@ resource "aws_subnet" "public_2" {
   availability_zone = "us-east-1b"
   map_public_ip_on_launch = true
 
-  tags {
+  tags = {
     Name = "public-us-east-1b"
      "kubernetes.io/cluster/eks" = "shared"
       "kubernetes.io/role/elb" = "1"
@@ -45,7 +45,7 @@ resource "aws_subnet" "private_1" {
   cidr_block = var.privatesubnet_cidr[0]
   availability_zone = "us-east-1a"
 
-  tags {
+  tags = {
     Name = "private-us-east-1a"
      "kubernetes.io/cluster/eks" = "shared"
      "kubernetes.io/role/internal-elb" = "1"
@@ -57,7 +57,7 @@ resource "aws_subnet" "private_2" {
   cidr_block = var.privatesubnet_cidr[1]
   availability_zone = "us-east-1b"
 
-  tags {
+  tags = {
     Name                                =  "private-us-east-1b"
      "kubernetes.io/cluster/eks"         = "shared"
      "kubernetes.io/role/internal-elb"    = "1"
@@ -70,7 +70,7 @@ resource "aws_subnet" "private_2" {
 resource "aws_internet_gateway" "ig_main"{
    vpc_id = aws_vpc.main.id
 
-   tags{
+   tags = {
     Name = "main-ig"
    }
 }
@@ -89,7 +89,7 @@ resource "aws_nat_gateway" "gwt1"{
   allocation_id = aws_eip.nat1.id
   subnet = aws_subnet.public_1.id
 
-  tags{
+  tags = {
     Name = "NAT 1"
   }
  }
@@ -97,7 +97,7 @@ resource "aws_nat_gateway" "gwt1"{
    allocation_id = aws_eip.nat2.id
    subnet = aws_subnet.public_2.id
 
-   tags{
+   tags = {
      Name = "NAT 2"
    }
   }

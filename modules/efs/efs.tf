@@ -24,7 +24,7 @@ resource "aws_efs_file_system" "cluster_efs" {
 
 resource "aws_efs_mount_target" "mount_efs" {
   file_system_id = aws_efs_file_system.cluster_efs.id
-  subnet_id      = modules.vpc.public_subnet
+  subnet_id      = var.public_subnet_id
   security_groups = [aws_security_group.example.id]
 }
 
